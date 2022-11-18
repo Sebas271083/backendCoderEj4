@@ -6,6 +6,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Productos</title>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/index.js"></script>
     </head>
     <body>
         <header>
@@ -14,26 +16,41 @@
 
         <main>
             <section class="contenedor">
-                <form class="p-80" style="width: 50%; margin-left: auto; margin-right: auto;" action="/productos" method="post"  enctype="multipart/form-data">
-                    <div>
-                        <label class="form-label" for="title">Nombre del producto:</label>
-                        <input type="text" class="form-control" id="title" name="title">
-                    </div>
-                    <div>
-                        <label for="price" class="form-label">Precio del producto:</label>
-                        <input type="text" class="form-control" id="price" name="price">
-                    </div>
-                    <div>
-                        <label for="imagen" class="form-label">Imagen</label>
-                        <input type="file" class="form-control" id="imagen" name="imagen">
-                    </div>
-                    <div>
-                        <label for="descripcion" class="form-label">Descripcion</label>
-                        <textarea type="text" class="form-control" id="descripcion" name="descripcion"></textarea>
-                    </div>
-                        <button type="submit" class="btn btn-primary mt-3">Guardar</button>
-                    </div>
+                <h1>Ingrese Producto</h1>
+                <div class="container d-flex flex-column">
+                <form class="container d-flex flex-column p-3 m-2" action="/productos" method="post">
+                    <label class="form-label" for="title">Titulo: </label>
+                    <input class="m-3 form-control" type="text" id="title" name="title">
+                    <label for="price">Precio: </label>
+                    <input class="m-3 form-control" type="text" id="price" name="price">
+                    <label for="thumbnail">Url de la foto: </label>
+                    <input class="m-3 form-control" type="text" id="thumbnail" name="thumbnail">
+                    <input class="m-3 btn btn-primary" type="submit" value="Enviar">
                 </form>
+                <div>
+
+
+
+                    <h2 class="text-center">Vista de Productos</h2>
+
+                
+                            <div class="width:50%">
+                            <table id="productos" >
+                                <tr class="">
+                                    <th class="text-center">Titulo</th>
+                                    <th class="text-center">Precio</th>
+                                    <th class="text-center">Foto</th>
+                                </tr>
+                                    <!-- <tr >
+                                        <td class="text-center"><%= prodcuto.title %></td>
+                                        <td class="text-center"><%= prodcuto.price %></td>
+                                        <td class="text-start"> <img style="width: 10%; margin-left: 500px;" src="" alt="">  </td>
+                                        <img src="" alt="">
+                
+                                    </tr> -->
+                
+                            </table>
+                        </div>
 
             </section>
         </main>

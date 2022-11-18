@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Productos</title>
+</head>
+<body>
+    <h1>Ingrese Producto</h1>
+    <div class="container d-flex flex-column">
+    <form class="container d-flex flex-column p-3 m-2" action="/productos" method="post">
+        <label class="form-label" for="title">Titulo: </label>
+        <input class="m-3 form-control" type="text" id="title" name="title">
+        <label for="price">Precio: </label>
+        <input class="m-3 form-control" type="text" id="price" name="price">
+        <label for="thumbnail">Url de la foto: </label>
+        <input class="m-3 form-control" type="text" id="thumbnail" name="thumbnail">
+        <input class="m-3 btn btn-primary" type="submit" value="Enviar">
+    </form>
+    <div>
+
+</body>
+</html>
