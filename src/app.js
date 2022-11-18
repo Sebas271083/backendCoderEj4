@@ -190,5 +190,10 @@ io.on('connection', async (socket)=> {
 
     const listaProductos = await contenedor.getAll()
     console.log(listaProductos)
-    socket.emit('producto',listaProductos)
+    socket.emit('nueva-conexion',listaProductos)
+
+    socket.on('new-product', (data)=> {
+        contenedor.save(data)
+        io.sockets.emit('producto', data)
+    })
 })
