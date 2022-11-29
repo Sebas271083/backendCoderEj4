@@ -34,12 +34,12 @@
                     <h2 class="text-center">Vista de Productos</h2>
 
                 
-                            <div class="width:50%">
+                            <div class="width:50% mb-5" >
                             <table id="productos" >
-                                <tr class="">
-                                    <th class="text-center">Titulo</th>
-                                    <th class="text-center">Precio</th>
-                                    <th class="text-center">Foto</th>
+                                <tr class="mb-3">
+                                    <th class="text-center mb-3">Titulo</th>
+                                    <th class="text-center mb-3">Precio</th>
+                                    <th class="text-center mb-3">Foto</th>
                                 </tr>
                                     <!-- <tr >
                                         <td class="text-center"><%= prodcuto.title %></td>
@@ -50,7 +50,18 @@
                                     </tr> -->
                 
                             </table>
+
                         </div>
+
+
+                        <body>
+                            <h1 class="mt-5">Mi Aplicacion de chat</h1>
+                            <form onsubmit="return addMessage(this)" >
+                                <input type="text" id="username" placeholder="Tu nombre">
+                                <input type="text" id="texto" placeholder="Cuetanos algo.... ">
+                                <input type="submit" value="Enviar">
+                            </form>
+                            <div id="messages"></div>
 
             </section>
         </main>

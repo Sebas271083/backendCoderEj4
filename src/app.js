@@ -24,6 +24,12 @@ app.use(express.static(publicRoot));
 app.use("/", routers);
 
 
+const messages = [
+    {author: "Juan", text:"¡Hola! ¿Que Tal?"},
+    {author: "Pedro", text:"¡Muy bien! ¿y vos?"},
+    {author: "Ana", text:"¡Genial!"}
+];
+
 
 
 let contenedor = new Contenedor('./src/db/productos.txt')
@@ -60,3 +66,17 @@ io.on('connection', async (socket)=> {
         io.sockets.emit('producto', data)
     })
 })
+
+io.on('connection', function(socket){
+    console.log('Un cliente se ha conectado')
+
+    //Para enviar todos los mensajes en la primera conexion 
+    socket.emit('messages', messages)
+
+
+    //Evento para recibir nuevos mensajes
+    socket.on('new-message',data => {
+        messages.push(data);
+        io.sockets.emit('messages', messages);
+    })
+ })
