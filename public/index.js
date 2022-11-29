@@ -11,7 +11,12 @@ socket.on('nueva-conexion', data => {
         linea.appendChild(precio)
 
         const foto = document.createElement('td')
-        foto.innerHTML = producto.thumbail
+        
+        const img = document.createElement('img')
+        img.setAttribute('src', producto.thumbnail)
+        img.setAttribute('width', '50')
+
+        foto.appendChild(img)
         linea.appendChild(foto)
 
 
@@ -32,7 +37,12 @@ socket.on('producto', data => {
         linea.appendChild(precio)
 
         const foto = document.createElement('td')
-        foto.innerHTML = data.thumbail
+
+        const img = document.createElement('img')
+        img.setAttribute('src', data.thumbnail)
+        img.setAttribute('width', '50')
+
+        foto.appendChild(img)
         linea.appendChild(foto)
         document.getElementById('productos').appendChild(linea)
 

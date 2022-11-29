@@ -1,5 +1,5 @@
-const fs = require('fs');
 
+const fs = require('fs')
 
 class Contenedor {
     constructor(archivo){
@@ -142,18 +142,4 @@ deleteById = async(id) => {
 }
 
 
-
-
-
-let contenedor = new Contenedor("prodcutos.txt")
-
-
-// metodos = async()=> {
-//     await contenedor.save({title:"papitas", price:200, thumbail:"https://www.larazon.es/resizer/_PdPCAn83uB64KhR3r_Mx3BBqLY=/600x400/smart/filters:format(webp):quality(65)/cloudfront-eu-central-1.images.arcpublishing.com/larazon/DTZL5ZLQK5BMLNVPFPOGNM5Y6A.jpg"})
-//     await contenedor.save({title:"galletitas", price:100, thumbail:"https://www.larazon.es/resizer/_PdPCAn83uB64KhR3r_Mx3BBqLY=/600x400/smart/filters:format(webp):quality(65)/cloudfront-eu-central-1.images.arcpublishing.com/larazon/DTZL5ZLQK5BMLNVPFPOGNM5Y6A.jpg"})
-// }
-
-// metodos()
-
-
-module.exports = Contenedor;
+module.exports = Contenedor

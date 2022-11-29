@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Tablet",
+    "price": 20000,
+    "thumbnail": "https://www.lenovo.com/medias/mkt-hero.png?context=bWFzdGVyfHJvb3R8MjM1NTEwfGltYWdlL3BuZ3xoNzIvaDBmLzE1ODY4NzEwOTQ0Nzk4LnBuZ3xmNzRmYmVmYmI5YTljMTI0OTY2MzRlNTgzYWRiZjE0MDVmMjI2ODZmN2E0M2FjNjQ5NDRmNjQ1Y2ZmOGVlNWQz"
+  },
+  {
+    "id": 2,
+    "title": "Notebook",
+    "price": 10000,
+    "thumbnail": "https://images.start.com.ar/EXO-L65-2.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Monitor",
+    "price": 20000,
+    "thumbnail": "https://medias.musimundo.com/medias/00349000-142673-142673-01-142673-01.jpg-size515?context=bWFzdGVyfGltYWdlc3wzODIxMnxpbWFnZS9qcGVnfGgzNy9oNmQvMTAzODAzNTMyMDgzNTAvMDAzNDkwMDAtMTQyNjczLTE0MjY3M18wMS0xNDI2NzNfMDEuanBnX3NpemU1MTV8OWRlMjYwNTJiZjNkN2YyYjM4Njg5YTgyZDhlMmRmNzc5YWQ4ZjIxZGNkYjhjYTZjMmFmNjNiNWNjNzIwM2VlNg"
+  },
+  {
+    "id": 5,
+    "title": "teclado",
+    "price": "3000",
+    "thumbnail": "https://ar-media.hptiendaenlinea.com/catalog/product/cache/b3b166914d87ce343d4dc5ec5117b502/2/U/2UN30AA-1_T1638827506.png"
+  }
+]
