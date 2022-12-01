@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "timestamp":"1669756860406"
+        "productos": [{
+            "nombre":"tablet",
+            "descripcion": "tablet",
+            "timestamp":"1669756860406",
+            "codigo":"123456789",
+            "precio":"30000",
+            "stock": 10,
+            "foto":"https://www.lenovo.com/medias/mkt-hero.png?context=bWFzdGVyfHJvb3R8MjM1NTEwfGltYWdlL3BuZ3xoNzIvaDBmLzE1ODY4NzEwOTQ0Nzk4LnBuZ3xmNzRmYmVmYmI5YTljMTI0OTY2MzRlNTgzYWRiZjE0MDVmMjI2ODZmN2E0M2FjNjQ5NDRmNjQ1Y2ZmOGVlNWQz",
+            "id": 1
+        }, {
+            "nombre":"tablet",
+            "descripcion": "tablet",
+            "timestamp":"1669756860406",
+            "codigo":"123456789",
+            "precio":"30000",
+            "stock": 10,
+            "foto":"https://www.lenovo.com/medias/mkt-hero.png?context=bWFzdGVyfHJvb3R8MjM1NTEwfGltYWdlL3BuZ3xoNzIvaDBmLzE1ODY4NzEwOTQ0Nzk4LnBuZ3xmNzRmYmVmYmI5YTljMTI0OTY2MzRlNTgzYWRiZjE0MDVmMjI2ODZmN2E0M2FjNjQ5NDRmNjQ1Y2ZmOGVlNWQz",
+            "id": 2
+
+        }]
+    }
+]

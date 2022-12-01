@@ -4,16 +4,16 @@ socket.on('nueva-conexion', data => {
     data.forEach(producto => {
         const linea = document.createElement('tr')
         const titulo = document.createElement('td')
-        titulo.innerHTML = producto.title
+        titulo.innerHTML = producto.nombre
         linea.appendChild(titulo)
         const precio = document.createElement('td')
-        precio.innerHTML = producto.price
+        precio.innerHTML = producto.precio
         linea.appendChild(precio)
 
         const foto = document.createElement('td')
         
         const img = document.createElement('img')
-        img.setAttribute('src', producto.thumbnail)
+        img.setAttribute('src', producto.foto)
         img.setAttribute('width', '50')
 
         foto.appendChild(img)
