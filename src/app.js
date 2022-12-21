@@ -1,82 +1,38 @@
-const express = require("express");
-const bp = require("body-parser");
-const routers = require("../routers");
-const app = express();
-const PORT = 8080;
-const fs = require('fs');
+import express from 'express';
 
-const { Server: HttpServer} = require('http')
-const { Server: IOServer} = require('socket.io')
-const Contenedor = require('./contenedor/contenedorFs')
+import { rutaCarrito } from '../routers/carrito.js';
+import { rutaProducto } from '../routers/productos.js';
 
-/* middlewares incorporados */
-app.use(bp.json());
-app.use(bp.urlencoded({ extended: true }));
-const publicRoot = './public'
+//Servidor*********
 
-/* visibilizo la carpeta public */
-// app.set('view engine', 'ejs')
+//Importar rutas
 
-const httpServer = new HttpServer (app);
-const io = new IOServer(httpServer); 
+const app = express()
 
-app.use(express.static(publicRoot));
-app.use("/", routers);
+const port = process.env.PORT || 8080;
+
+// Lineas para usar json
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
-const messages = [
-    {author: "Juan", text:"¡Hola! ¿Que Tal?"},
-    {author: "Pedro", text:"¡Muy bien! ¿y vos?"},
-    {author: "Ana", text:"¡Genial!"}
-];
+//Implementar ruta
+app.use('/api/productos', rutaProducto)
+app.use('/api/carrito', rutaCarrito)
 
 
-
-let contenedor = new Contenedor('./src/db/productos.txt')
-
-
-// metodos = async()=> {
-//     await contenedor.save({title:"papitas", price:200, thumbail:"https://www.larazon.es/resizer/_PdPCAn83uB64KhR3r_Mx3BBqLY=/600x400/smart/filters:format(webp):quality(65)/cloudfront-eu-central-1.images.arcpublishing.com/larazon/DTZL5ZLQK5BMLNVPFPOGNM5Y6A.jpg"})
-//     await contenedor.save({title:"galletitas", price:100, thumbail:"https://www.larazon.es/resizer/_PdPCAn83uB64KhR3r_Mx3BBqLY=/600x400/smart/filters:format(webp):quality(65)/cloudfront-eu-central-1.images.arcpublishing.com/larazon/DTZL5ZLQK5BMLNVPFPOGNM5Y6A.jpg"})
-// }
-
-// metodos()
-
-
-
-
-const server = httpServer.listen(PORT, () => {
-    console.log(
-        `Servidor http escuchando en el puerto ${server.address().port}`
-    );
-    console.log(`http://localhost:${server.address().port}`);
-});
-server.on("error", error => console.log(`Error en servidor: ${error}`));
-
-//Socket
-io.on('connection', async (socket)=> {
-    console.log('nuevo cliente conectado')
-
-    const listaProductos = await contenedor.getAll()
-    console.log(listaProductos)
-    socket.emit('nueva-conexion',listaProductos)
-
-    socket.on('new-product', (data)=> {
-        contenedor.save(data)
-        io.sockets.emit('producto', data)
-    })
+//Midleware de rutas no implementadas
+app.use((peticion, res, next)=>{
+    if(peticion.route) {
+        res.status(401).send({error : -2, descripcion: `ruta ${peticion.url} no encontrada`})
+    }else {
+        next()
+    }
 })
 
-io.on('connection', function(socket){
-    console.log('Un cliente se ha conectado')
+//Servidor
+const servidor = app.listen(port, () => {
+    console.log(`Servidor escuchando en el puerto: ${servidor.address().port}`)
+});
 
-    //Para enviar todos los mensajes en la primera conexion 
-    socket.emit('messages', messages)
-
-
-    //Evento para recibir nuevos mensajes
-    socket.on('new-message',data => {
-        messages.push(data);
-        io.sockets.emit('messages', messages);
-    })
- })
+servidor.on('error', error => console.log(`Error: ${error}`))

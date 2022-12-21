@@ -1,8 +1,8 @@
 [
   {
-    "nombre": "tablet",
+    "nombre": "tablet cambio 7",
     "descripcion": "tablet",
-    "timestamp": "1669756860406",
+    "timestamp": 1669756860406,
     "codigo": "123456789",
     "precio": "30000",
     "stock": 10,

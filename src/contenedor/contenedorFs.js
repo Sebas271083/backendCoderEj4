@@ -1,18 +1,25 @@
 
-const fs = require('fs')
+import * as fs from 'fs'
 
-class Contenedor {
+export class Contenedor {
     constructor(archivo){
         this.archivo = archivo
     }
 
     save = async(producto) => {
-        
+        let result;
         try {
-            if(fs.existsSync(this.archivo)){
-                let info = await fs.promises.readFile(this.archivo, 'utf8');
-                let result = JSON.parse(info)
-                if(result.length>0) {
+            let info = await fs.promises.readFile(this.archivo, 'utf8');
+            if(info === "") {
+                console.log("vacio")
+            } else {
+            result = JSON.parse(info)
+            console.log("result.... ", result)
+            }
+            if(fs.existsSync(this.archivo) && info !== ""){
+                result = JSON.parse(info)
+                
+                if(result !== "" && result.length>0) {
                     let lastId = result[result.length-1].id+1
                     let newProduct = {
                         id: lastId,
@@ -31,14 +38,18 @@ class Contenedor {
                 await fs.promises.writeFile(this.archivo,JSON.stringify(result, null, 2))
                 return lastId;
             }
-            }else {
-                let newProducto={
-                    id:1,
-                    title: producto.title,
-                    price: producto.price,
-                    thumbail: producto.thumbail
-                }
-                await fs.promises.writeFile(this.archivo,JSON.stringify([newProducto],null, 2))
+            } else {
+                let newProducto=[{
+                    nombre: producto.nombre,
+                    descripcion: producto.descripcion,
+                    timestamp: 1669756860406,
+                    codigo: producto.codigo,
+                    precio: producto.precio,
+                    stock: 10,
+                    foto: producto.foto,
+                    id: 1
+                }]
+                await fs.promises.writeFile(this.archivo,JSON.stringify(newProducto,null, 2))
                 return 1
             }
         } catch (error) {
@@ -74,6 +85,15 @@ getById = async (id) => {
     }
 }
 
+// update = async (id, producto) => {
+//     try {
+
+       
+//     } catch {
+//     }
+// }
+
+
 
  async getAll() { 
     try {
@@ -90,24 +110,31 @@ getById = async (id) => {
   }
 
 deleteById = async(id) => {
+    console.log("id.....", id)
 
     /* chequeo si existe el documento */
 
     try {
         if ((this.archivo)) {
-            const data = await this.readFile(this.archivo);
+            const data = await fs.promises.readFile(this.archivo);
+            let result= JSON.parse(data);
+
 
             /* verifico que exista el id */
 
             console.log(`Buscando producto con el id solicitado...`);
-            if (data.some(item => item.id === id)) {
-                const data = await this.readFile(this.archivo);
+            console.log("data....", result)
+            
+            if (result.some(item => item.id === id)) {
+
+                const data = await fs.promises.readFile(this.archivo);
 
                 /* elimino producto */
 
                 console.log(`Eliminando producto con id solicitado...`);
-                const datos = data.filter(item => item.id !== id);
-                this.writeFile(this.archivo, datos);
+                const datos = result.filter(item => item.id !== id);
+                console.log("datos....", datos)
+                fs.promises.writeFile(this.archivo, datos);
                 console.log(`Producto con el id ${id} eliminado`);
             } else {
                 throw new Error(
@@ -120,26 +147,25 @@ deleteById = async(id) => {
             `Ocurrio un error eliminando el producto con el id solicitado: ${error.message}`
         );
     }
-
+    
+}
      deleteAll = async() =>{
-        try {
+            try {
 
-            /* chequeo si existe el documento */
+                /* chequeo si existe el documento */
 
-            let nuevoArray = [];
-            console.log(`Borrando datos...`);
-            await this.writeFile(this.archivo, nuevoArray);
-            console.log(
-                `Se borraron todos los datos del archivo ${this.archivo}`
-            );
-        } catch (error) {
-            console.log(
-                `Ocurrio un error eliminando los datos: ${error.message}`
-            );
+                let nuevoArray = [];
+                console.log(`Borrando datos...`);
+                await fs.promises.writeFile(this.archivo, nuevoArray);
+                console.log(
+                    `Se borraron todos los datos del archivo ${this.archivo}`
+                );
+            } catch (error) {
+                console.log(
+                    `Ocurrio un error eliminando los datos: ${error.message}`
+                );
+            }
         }
     }
-}
-}
 
 
-module.exports = Contenedor

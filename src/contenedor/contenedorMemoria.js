@@ -1,5 +1,5 @@
 
-class Contenedor {
+export class Contenedor {
     constructor(archivo){
         this.archivo = archivo
     }
@@ -139,5 +139,3 @@ deleteById = async(id) => {
 }
 }
 
-
-module.exports = Contenedor
