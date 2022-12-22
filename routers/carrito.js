@@ -22,12 +22,29 @@ rutaCarrito.delete ('/:id', async(req, res)=>{
     })
 })
 
-
-rutaCarrito.get(':id/productos', (req, res)=> {
-
+rutaCarrito.get('/:id/productos', async (req, res)=> {
+    const idCarrito = parseInt(req.params.id) 
+    console.log(idCarrito)
+    const listaProductos = await carritos.getById(idCarrito)
+    res.json(listaProductos[0].productos)
 })
 
-rutaCarrito.post('/:id/productos',(req, res)=>{
+rutaCarrito.post('/', async (req, res)=>{
+    const carrito = {
+        timestamp: Date.now(),
+        productos:[]
+    }
+    const id = await carritos.save(carrito)
+    res.json(id)
+})  
+
+rutaCarrito.post('/:id/productos', async (req, res)=>{
+    const idCarrito = parseInt(req.params.id) 
+    const idProducto = req.body.idProducto
+    const producto = await productos.getById(idProducto)
+    const carrito = await carritos.getById(idCarrito)
+    carrito.productos.push(producto)
+    await carritos.update(idCarrito)
 })
 
 rutaCarrito.delete('/:id/productos/:id_prod',(req, res)=>{

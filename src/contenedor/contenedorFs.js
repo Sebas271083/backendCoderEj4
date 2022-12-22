@@ -109,46 +109,40 @@ getById = async (id) => {
     }  
   }
 
-deleteById = async(id) => {
-    console.log("id.....", id)
-
+  deleteById = async(id) => {
+    console.log("id.....", id);
+  
     /* chequeo si existe el documento */
-
+  
     try {
-        if ((this.archivo)) {
-            const data = await fs.promises.readFile(this.archivo);
-            let result= JSON.parse(data);
-
-
-            /* verifico que exista el id */
-
-            console.log(`Buscando producto con el id solicitado...`);
-            console.log("data....", result)
-            
-            if (result.some(item => item.id === id)) {
-
-                const data = await fs.promises.readFile(this.archivo);
-
-                /* elimino producto */
-
-                console.log(`Eliminando producto con id solicitado...`);
-                const datos = result.filter(item => item.id !== id);
-                console.log("datos....", datos)
-                fs.promises.writeFile(this.archivo, datos);
-                console.log(`Producto con el id ${id} eliminado`);
-            } else {
-                throw new Error(
-                    `No se encontro el producto con el id ${id}`
-                );
-            }
+      if (this.archivo) {
+        const data = await fs.promises.readFile(this.archivo);
+        let result = JSON.parse(data);
+  
+        /* verifico que exista el id */
+  
+        console.log(`Buscando producto con el id solicitado...`);
+        console.log("data....", result);
+  
+        if (result.some(item => item.id === id)) {
+          /* elimino producto */
+  
+          console.log(`Eliminando producto con id solicitado...`);
+          const datos = result.filter(item => item.id !== id);
+          console.log("datos....", datos);
+          fs.promises.writeFile(this.archivo, JSON.stringify(datos));
+          console.log(`Producto con el id ${id} eliminado`);
+        } else {
+          throw new Error(`No se encontro el producto con el id ${id}`);
         }
+      }
     } catch (error) {
-        console.log(
-            `Ocurrio un error eliminando el producto con el id solicitado: ${error.message}`
-        );
+      console.log(
+        `Ocurrio un error eliminando el producto con el id solicitado: ${error.message}`
+      );
     }
-    
-}
+  };
+  
      deleteAll = async() =>{
             try {
 
